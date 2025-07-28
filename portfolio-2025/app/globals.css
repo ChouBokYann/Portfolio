@@ -1,29 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Faustina:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: all;
 };
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #454545;
+  --foreground: #FFE6C7;
+  --design-box: #FF6000;
+  --small-design-box: #FFA559;
+  --font-headers: 'Manrope', sans-serif;
+  --font-body: 'Faustina', serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-design-box: var(--design-box);
+  --color-small-design-box: var(--small-design-box);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #454545;
+    --foreground: #FFE6C7;
+    --design-box: #FF6000;
+    --small-design-box: #FFA559;
   }
 }
 
 body {
-  /* background: var(--background); */
+  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+}
+
+/* Custom slow bounce animation */
+@keyframes bounce-slow {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 4s infinite;
+}
+
+/* Custom 3D pivot animation */
+@keyframes pivot-3d {
+  0%, 100% {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  }
+  25% {
+    transform: perspective(1000px) rotateY(20deg) rotateX(5deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  }
+  75% {
+    transform: perspective(1000px) rotateY(-20deg) rotateX(-5deg);
+  }
+}
+
+.animate-rotate-slow {
+  animation: pivot-3d 8s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* Font utility classes */
+.font-headers {
+  font-family: var(--font-headers);
+}
+
+.font-body {
+  font-family: var(--font-body);
 }
